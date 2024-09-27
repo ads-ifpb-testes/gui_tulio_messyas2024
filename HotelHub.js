@@ -1,5 +1,4 @@
-import { openDb } from './database.js'; // Certifique-se de que o caminho está correto e que a extensão ".js" é incluída.
-const db = openDb();
+import { openDb } from './database.js'; 
 
 class HotelHub {
     constructor() {
@@ -8,7 +7,7 @@ class HotelHub {
         this.nextHotelId = 1;
         this.nextReservationId = 1;
         this.nextRoomId = 1;
-        this.db = db;
+        this.openDb = openDb;
     }
 
     createHotel(name, location) {
@@ -150,7 +149,7 @@ class HotelHub {
     async saveHotelsToDB() {
         const db = await openDb();
         await db.exec(`CREATE TABLE IF NOT EXISTS hotels (
-            id INTEGER PRIMARY KEY,
+            id VARCHAR PRIMARY KEY,
             name TEXT NOT NULL,
             location TEXT NOT NULL
         )`);
